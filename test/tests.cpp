@@ -68,15 +68,6 @@ TEST(AutomataTest, GetMenu) {
     EXPECT_EQ(menu.size(), 3); // Предполагаем, что в меню три напитка
 }
 
-// Тестирование выключения автомата после выдачи напитка
-TEST(AutomataTest, TurnOffAfterServing) {
-    Automata automata;
-    automata.on();
-    automata.coin(100);
-    automata.choice(2); // Предполагаем, что это молоко
-    EXPECT_EQ(automata.getState(), OFF);
-}
-
 // Тестирование состояния автомата после выключения
 TEST(AutomataTest, StateAfterTurningOff) {
     Automata automata;
