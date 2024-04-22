@@ -80,4 +80,6 @@ void Automata::cook(int drink) {
 void Automata::finish() {
     std::cout << "Напиток готов!" << std::endl;
     state = SERVE;
+    off();
 }
+
