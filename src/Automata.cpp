@@ -1,4 +1,3 @@
-// Copyright 2022 UNN-IASR
 #include "Automata.h"
 #include <iostream>
 
@@ -24,9 +23,13 @@ void Automata::off() {
 
 void Automata::coin(int amount) {
     if (state == WAIT || state == ACCEPT) {
-        cash += amount;
-        state = ACCEPT;
-        std::cout << "Вы положили  " << amount << " coins." << std::endl;
+        if (amount > 0) { // Проверка на положительную сумму монеты
+            cash += amount;
+            state = ACCEPT;
+            std::cout << "Вы положили  " << amount << " coins." << std::endl;
+        } else {
+            std::cout << "Недопустимая сумма монеты." << std::endl;
+        }
     }
 }
 

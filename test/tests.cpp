@@ -47,7 +47,7 @@ TEST(AutomataTest, CheckSufficientFunds) {
     Automata automata;
     automata.on();
     automata.coin(20);
-    EXPECT_FALSE(automata.check(0)); // Проверяем, можно ли купить напиток под индексом 0 (предположим, что это чай)
+    EXPECT_FALSE(automata.check(0));
     automata.coin(30);
     EXPECT_TRUE(automata.check(0)); // Теперь должно быть достаточно средств
 }
@@ -89,7 +89,6 @@ TEST(AutomataTest, StateAfterTurningOff) {
 TEST(AutomataTest, InsertInvalidCoins) {
     Automata automata;
     automata.on();
-    automata.coin(-10); // Предполагаем, что нельзя внести отрицательное количество монет
+    automata.coin(-10);
     EXPECT_EQ(automata.getState(), WAIT);
 }
-
