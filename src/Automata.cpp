@@ -1,3 +1,4 @@
+// Copyright 2022 UNN-IASR
 #include "Automata.h"
 #include <iostream>
 
@@ -58,7 +59,8 @@ bool Automata::check(int drink) {
 
 void Automata::cancel() {
     if (state == ACCEPT) {
-        std::cout << "Транзакция отменена. Возвращаем " << cash << " coins." << std::endl;
+        std::cout << "Отмена. Возврат "
+            << cash << " coins." << std::endl;
         cash = 0;
         state = WAIT;
     }
@@ -76,5 +78,4 @@ void Automata::cook(int drink) {
 void Automata::finish() {
     std::cout << "Напиток готов!" << std::endl;
     state = SERVE;
-    off();
 }
