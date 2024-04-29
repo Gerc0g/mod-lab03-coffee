@@ -8,11 +8,9 @@ class AutomataTest : public ::testing::Test {
     Automata automata;
 
     void SetUp() override {
-        std::vector<std::string> testMenu = {"Чай", "Кофе", "Какао"};
-        std::vector<int> testPrices = {25, 50, 30};
-        automata.getMenu(testMenu, testPrices);
-        automata.on();
-    }
+    automata.on();
+}
+
 };
 
 TEST_F(AutomataTest, IsInitiallyOff) {
