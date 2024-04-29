@@ -10,7 +10,6 @@ class AutomataTest : public ::testing::Test {
     void SetUp() override {
     automata.on();
 }
-
 };
 
 TEST_F(AutomataTest, IsInitiallyOff) {
