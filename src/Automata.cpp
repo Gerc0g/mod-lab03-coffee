@@ -52,7 +52,7 @@ void Automata::choice(int drink) {
 void Automata::check() {
     if (state == CHECK) {
         state = COOK;
-        std::cout << "Средств достаточно, начинаем приготовление напитка..." << std::endl;
+        std::cout << "Средств достаточно, приготовление..." << std::endl;
     }
 }
 
@@ -75,5 +75,5 @@ void Automata::cook() {
 
 void Automata::finish() {
     state = WAIT;
-    std::cout << "Пожалуйста, заберите ваш напиток и наслаждайтесь." << std::endl;
+    std::cout << "Пожалуйста, заберите напиток." << std::endl;
 }

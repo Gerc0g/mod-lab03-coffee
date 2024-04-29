@@ -1,7 +1,7 @@
 // Copyright 2022 UNN-IASR
 // Automata.h
 // Automata.h
-#ifndef AUTOMATA_H
+#ifndef INCLUDE_AUTOMATA_H_
 #define AUTOMATA_H
 
 #include <string>
@@ -10,13 +10,13 @@
 enum STATES { OFF, WAIT, ACCEPT, CHECK, COOK };
 
 class Automata {
-private:
+ private:
     int cash;  //сумма
     std::vector<std::string> menu;  // Меню напитков
     std::vector<int> prices;  // Цены напитков
     STATES state;  // Текущее состояние автомата
 
-public:
+ public:
     Automata();  // Конструктор
 
     void on();  // Включение
@@ -31,4 +31,4 @@ public:
     void finish();  // Завершение обслуживания пользователя
 };
 
-#endif
+#endif // INCLUDE_AUTOMATA_H_
