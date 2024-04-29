@@ -68,12 +68,11 @@ void Automata::cancel() {
 
 void Automata::cook() {
     if (state == COOK) {
-        // Имитация процесса приготовления
-        state = WAIT;
-        cash = 0; // Предполагается, что стоимость напитка равна внесенной сумме
         std::cout << "Ваш напиток готов." << std::endl;
+        finish();
     }
 }
+
 
 void Automata::finish() {
     state = WAIT;
