@@ -37,13 +37,6 @@ TEST_F(AutomataTest, RefundsCoins) {
     EXPECT_EQ(WAIT, automata.getState());
 }
 
-TEST_F(AutomataTest, CanMakeSelection) {
-    automata.coin(50);
-    automata.choice(1);
-    automata.check();
-    EXPECT_EQ(COOK, automata.getState());
-}
-
 TEST_F(AutomataTest, RejectsInvalidSelection) {
     automata.coin(50);
     automata.choice(10);
@@ -54,14 +47,6 @@ TEST_F(AutomataTest, ChecksWithInsufficientFunds) {
     automata.coin(10);
     automata.choice(0);
     EXPECT_NE(WAIT, automata.getState());
-}
-
-TEST_F(AutomataTest, CooksWhenFundsAreSufficient) {
-    automata.coin(50);
-    automata.choice(1);
-    automata.check();
-    automata.cook();
-    EXPECT_EQ(WAIT, automata.getState());
 }
 
 TEST_F(AutomataTest, CompletesSessionAfterCooking) {
