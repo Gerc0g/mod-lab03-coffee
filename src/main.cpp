@@ -3,17 +3,34 @@
 #include <iostream>
 
 int main() {
-    Automata automata;
-    automata.on();
-    automata.coin(100); // Пользователь вносит 100 монет
-    std::vector<std::string> menu = automata.getMenu();
+    Automata coffeeMachine;
 
-    std::cout << "Выберите напиток:" << std::endl;
-    for (int i = 0; i < menu.size(); ++i) {
+    coffeeMachine.on();
+    coffeeMachine.coin(50);
+    auto menu = coffeeMachine.getMenu();
+    std::cout << "Доступные напитки:" << std::endl;
+    for (size_t i = 0; i < menu.size(); ++i) {
         std::cout << i + 1 << ". " << menu[i] << std::endl;
     }
+    coffeeMachine.choice(1);
+    coffeeMachine.check();
+    coffeeMachine.cook();
+    coffeeMachine.finish();
 
-    automata.choice(1); // Пользователь выбирает кофе (индекс 1)
-    automata.off();
+    // отмена операции
+    coffeeMachine.on();
+    coffeeMachine.coin(100);
+    coffeeMachine.choice(2);
+    coffeeMachine.cancel();
+
+    // поведение при недостаточной сумме
+    coffeeMachine.on();
+    coffeeMachine.coin(10);
+    coffeeMachine.choice(1);
+    coffeeMachine.check();
+
+    // Выключение автомата
+    coffeeMachine.off();
+
     return 0;
 }

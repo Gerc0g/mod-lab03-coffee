@@ -1,39 +1,34 @@
 // Copyright 2022 UNN-IASR
 // Automata.h
-#ifndef INCLUDE_AUTOMATA_H_
-#define INCLUDE_AUTOMATA_H_
+// Automata.h
+#ifndef AUTOMATA_H
+#define AUTOMATA_H
 
-#include <vector>
 #include <string>
+#include <vector>
 
-enum STATES {
-    OFF,
-    WAIT,
-    ACCEPT,
-    CHECK,
-    COOK,
-    SERVE
-};
+enum STATES { OFF, WAIT, ACCEPT, CHECK, COOK };
 
 class Automata {
- private:
-    int cash;
-    std::vector<std::string> menu;
-    std::vector<int> prices;
-    STATES state;
+private:
+    int cash;  //сумма
+    std::vector<std::string> menu;  // Меню напитков
+    std::vector<int> prices;  // Цены напитков
+    STATES state;  // Текущее состояние автомата
 
- public:
-    Automata();
+public:
+    Automata();  // Конструктор
 
-    void on();
-    void off();
-    void coin(int amount);
-    std::vector<std::string> getMenu() const;
-    STATES getState() const;
-    void choice(int drink);
-    bool check(int drink);
-    void cancel();
-    void cook(int drink);
-    void finish();
+    void on();  // Включение
+    void off();  // Выключение
+    void coin(int amount);  // Занесение денег
+    std::vector<std::string> getMenu();  // Считывание меню
+    STATES getState();  // Считывание состояния
+    void choice(int drink);  // Выбор напитка
+    void check();  // Проверка наличия необходимой суммы
+    void cancel();  // Отмена сеанса
+    void cook();  // Имитация процесса приготовления напитка
+    void finish();  // Завершение обслуживания пользователя
 };
-#endif  // INCLUDE_AUTOMATA_H_
+
+#endif

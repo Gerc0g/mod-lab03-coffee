@@ -1,11 +1,11 @@
 // Copyright 2022 UNN-IASR
+// Automata.cpp
 #include "Automata.h"
 #include <iostream>
 
-Automata::Automata() : state(OFF), cash(0) {
-    // Предполагаемое заполнение меню и цен
-    menu = {"Tea", "Coffee", "Milk"};
-    prices = {25, 50, 30};
+Automata::Automata() {
+    state = OFF;
+    // Загрузка меню и цен из файла или инициализация прямо здесь
 }
 
 void Automata::on() {
@@ -16,70 +16,64 @@ void Automata::on() {
 }
 
 void Automata::off() {
-    if (state != OFF) {
-        state = OFF;
-        std::cout << "Автомат отключен." << std::endl;
-    }
+    state = OFF;
+    std::cout << "Автомат выключен." << std::endl;
 }
 
 void Automata::coin(int amount) {
     if (state == WAIT || state == ACCEPT) {
-        if (amount > 0) {
-            cash += amount;
-            state = ACCEPT;
-            std::cout << "Вы положили  " << amount
-                << " coins." << std::endl;
-        } else {
-            std::cout << "Недопустимая сумма монеты."
-                << std::endl;
-        }
+        cash += amount;
+        state = ACCEPT;
+        std::cout << "Вы внесли " << amount << " единиц валюты." << std::endl;
     }
 }
 
-std::vector<std::string> Automata::getMenu() const {
+std::vector<std::string> Automata::getMenu() {
+    // Возврат меню для пользователя
     return menu;
 }
 
-STATES Automata::getState() const {
+STATES Automata::getState() {
+    // Возврат текущего состояния для пользователя
     return state;
 }
 
 void Automata::choice(int drink) {
-    if (drink >= 0 && drink < menu.size() &&
-            state == ACCEPT) {
-        if (check(drink)) {
-            cook(drink);
+    if (state == ACCEPT && drink >= 0 && drink < menu.size()) {
+        if (cash >= prices[drink]) {
+            state = CHECK;
+            std::cout << "Вы выбрали: " << menu[drink] << std::endl;
         } else {
-            std::cout << "Не хватает денег." << std::endl;
-            cancel();
+            std::cout << "Недостаточно средств." << std::endl;
         }
     }
 }
 
-bool Automata::check(int drink) {
-    return cash >= prices[drink];
+void Automata::check() {
+    if (state == CHECK) {
+        state = COOK;
+        std::cout << "Средств достаточно, начинаем приготовление напитка..." << std::endl;
+    }
 }
 
 void Automata::cancel() {
-    std::cout << "Отмена. Возврат " << cash
-        << " coins." << std::endl;
-    cash = 0;
-    state = WAIT;
+    if (state == ACCEPT || state == CHECK) {
+        cash = 0;
+        state = WAIT;
+        std::cout << "Операция отменена. Ваши деньги возвращены." << std::endl;
+    }
 }
 
-void Automata::cook(int drink) {
-    if (state == ACCEPT) {
-        std::cout << "Напиток готовиться "
-        << menu[drink] << "." << std::endl;
-        cash -= prices[drink];
-        state = COOK;
-        finish();
+void Automata::cook() {
+    if (state == COOK) {
+        // Имитация процесса приготовления
+        state = WAIT;
+        cash = 0; // Предполагается, что стоимость напитка равна внесенной сумме
+        std::cout << "Ваш напиток готов." << std::endl;
     }
 }
 
 void Automata::finish() {
-    std::cout << "Напиток готов!" << std::endl;
-    state = SERVE;
-    off();
+    state = WAIT;
+    std::cout << "Пожалуйста, заберите ваш напиток и наслаждайтесь." << std::endl;
 }
-
